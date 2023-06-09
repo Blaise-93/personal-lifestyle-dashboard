@@ -1,5 +1,5 @@
-An incredible API superchaged project to make our life easier built with Javascript, JSON and Python (Django).
+An incredible API superchaged project to make your life easier built with Javascript, JSON and Python (Django).
 
-Influenced by scrimba/momentum
+Influenced by `scrimba` platform
 
-#Sponsored by Umeh Vivian
+Sponsored by Pharm Umeh Vivian

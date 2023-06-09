@@ -14,6 +14,7 @@
 		document.getElementById("author").textContent = `By: Dodi Achmad`
     })
 
+    //dont forget favicon
 
 
 fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
@@ -52,11 +53,13 @@ navigator.geolocation.getCurrentPosition(position => {
             return res.json()
         })
         .then(data => {
+            console.log(data)
             const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
             document.getElementById("weather").innerHTML = `
                 <img src=${iconUrl} alt="weather icon "/>
                 <p class="weather-temp">${Math.round(data.main.temp)}℃</p>
                 <p class="weather-city">${data.name}</p>
+                <p class="weather-info">${data.weather[0].description}</p> 
             `
         })
         .catch(err => console.error(err))
@@ -72,7 +75,7 @@ fetch(`https://type.fit/api/quotes`)
         }
         renderTextHtml()  
 
-        setInterval( renderTextHtml, 43200000 )
+        setInterval( renderTextHtml, 33200000 )
 
        function matchingArr(){
             let newArrTexts = []
@@ -80,9 +83,14 @@ fetch(`https://type.fit/api/quotes`)
             newArrTexts.push( texts.text)
             let randomNum = Math.floor(Math.random() * newArrTexts.length)
             document.querySelector('.quotes').textContent =  `${newArrTexts[randomNum]}`
-            console.log(newArrTexts)
+         
         })
        }
        
     
     })
+
+
+
+
+    
