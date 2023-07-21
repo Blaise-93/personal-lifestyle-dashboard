@@ -1,23 +1,60 @@
+*, 
+*::before,
+ *::after {
+    box-sizing: border-box;
+}
 * {
-    box-sizing: border-box
+    margin: 0;
 }
 
+
+
 body {
+    font-family: "Inter", sans-serif;
+    /* display: flex;
+    justify-content: center; */
     margin: 0;
-    background: no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     background:   #121212;;/*  #121212; */
     font-family: "inter", Arial, Helvetica, sans-serif;
     text-shadow: 0px 0px 20px #242424;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-nav > .nav-items,
- main {
+
+/* Header & navigation */
+.header-container {
+    margin-top: 20px;
+    width: 1000px;
+    height: 230px;
+    background-image: url('images/gallery.png');
+    background-repeat: no-repeat;
+    background-size: cover
+}
+.header-inner {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items:center;
+    color: whitesmoke;
+    min-height: 100%;
+}
+
+.header-title {
+    font-size: 2.95rem;
+    font-size: 700
+}
+
+.subtitle {
+    text-align: right;
+    font-weight: 600;
+    line-height: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: whitesmoke
+}
+
+ nav > .nav-items{
+    display: flex;
     align-items: center;
 }
 .nav-link {
@@ -45,103 +82,214 @@ nav .link-mode {
     text-decoration: none;
 }
 
-main {
-    padding: 1em;
+.movie-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center
 }
 
-.header-container {
-    background-image: url(images/gallery.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-  /*   color: white; */
+img,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
 }
 
+input,
+button,
+textarea,
+select {
+    font: inherit
+}
+h1, h2,
+p, h3 {
+    overflow-wrap: break-word;
+}
 
-.header-inner {
+.container {
+    width: 62.5em;
+    background: #0e0e0e
+}
+
+/* Search movie  */
+.searchbar {
+    position: relative;
+    top: -1.25em;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 6em;
-   
+    justify-content: center;
 }
 
-.header-title {
-    font-weight: 800; /* Write some media query for mobiles */
-    font-size:2.68rem;
-    padding-left: 0.35em;
-    line-height: 0.55em;
-    display: flex;
-    letter-spacing: -0.045em;
-    color: #FFFFFF;
-}
-.subtitle {
-    font-weight: 700;
-    font-size: 0.875rem;
-    line-height: 1.43em;
-    color: #FFFFFF;
+
+ .material-icons {
+    position: absolute;
+    left: 22%;
+    top: 23%;
+    color: white;
+ 
+  } 
+
+
+.search-input {
+    width: 450px;
+    height: 42px;
+    background-color: #2e2e2f;
+    border-radius: 10px  0 0 10px;
+    padding-left: 40px;
+    outline: none;
+    border: none;
+    color: #d5d5d5
 }
 
-.main-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 19.875em;
-    height: 2.375em;
-    background: #2E2E2F;
-    box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.05);
-    border-radius: 0.375;
+input::placeholder {
+    color: #a5a5a5;
+    opacity: 0.5;
 }
 
 .search-btn {
     background: #4b4b4b;
-    border-radius: 0 0.375 0.375 0;
-    height: 2.625em;
-    padding-inline: 40px;
-    color: #fff;
+    border-radius: 0px 6px 6px 0px;
+    height: 42px;
+    width: 120px;
+    padding-inline: 20px;
+    color: whitesmoke;
     outline: none;
-    border: none;
-    cursor: pointer;
-  }
+    border:none;
+    cursor: pointer
 
-.search-input {
-    background-color: #2e2e2f;
-    background-image: url(images/search-icon.png);
-    background-repeat: no-repeat;
-    background-position: 8px 12px, center;
-    border-radius: 10px 0 0 10px;
-    padding-left: 20px;
-    outline: none;
-    border: none;
-    color: #d5d5d5;
-    height: 40px;
-    max-width: 250px;
+}
+
+.image-content,
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.watchlist-content {
+    color: #787878
+}
+
+.image-content.watchlist {
+    min-height: 790px;
+}
+
+.image-content {
+    align-items: center;
+    gap:0.625em ;
+    color: #2e2e2f;
+    min-height: 750px;
+}
+
+.watchlist-subheading {
+    font-size: 1.5rem;
+    color: whitesmoke;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.watchlist-home {
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    gap: 10px
+}
+
+/* Movie Container CSS */
+
+.movie-dashboard {
+    padding: 1.875em;
+    display: flex;
+    flex-direction: column;
+    gap: 3.125em
+}
+
+.movie-inner {
+    display: flex;
+    gap: 1.875em;
+    padding-bottom: 2.5em;
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.movie-info {
+    color: whitesmoke;
    
+    gap: 1.25em;
+    flex-basis: 100%;
+}
+
+.poster-img {
+    width: 21.875em;
+    height: 21.875em;
+}
+
+/* Each Movie CSS */
+
+.movie-title {
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    gap: 0.625em
+}
+
+.title {
+    font-size: 1.45rem;
+}
+
+.star-icon {
+    position : relative;
+    right: -0.3125em;
+}
+
+.movie-desc {
+    gap: 2.5em;
+    align-items:center
+}
+.watchlist-container,
+.movie-desc {
+    display: flex;
+    justify-content: center;
+}
+
+.watchlist-container {
+    height:1.25em ;
+    gap: 0.3125em
+}
+.plot {
+    color: #a5a5a5
+}
+.plus-icon {
+    cursor: pointer
+}
+
+.added-text,
+.remove-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-style: solid;
+    border-radius: 0.625em;
+    padding: 0.625em;
+    position: fixed;
+    inset: 0;
+    top: 1.25em;
+    width: fit-content;
+    height: min-content;
+    opacity: 0;
+    z-index: 1;
+    margin-inline: auto;
+}
+
+.added-text {
+    color: hsl(146, 90%, 67%);
+}
+
+.removed_text {
+    color: hsl(1, 90%, 67%);
   }
   
-input::placeholder {
-    color: #a5a5a5;
-    opacity: 0.5;
-    padding-left: 0.625em;
+  .visible {
+    opacity: 1;
+    transition: opacity 1s linear;
   }
 
- 
-.image-content {
-   align-self: center;
-    margin: 7em 7em 0 7em;
-   text-align: center;
-    color: white
-}
-.image-content > img {
-    width: 70px;
-    height:61.25px;
-}
-.image-content > p {
-    font-size: 18px;
-    line-height: 20px;
-    color: #2E2E2F;
-}
 
