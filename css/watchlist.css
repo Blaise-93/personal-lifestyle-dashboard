@@ -258,8 +258,9 @@ input::placeholder {
 .plot {
     color: #a5a5a5
 }
-.plus-icon {
+.add-icon {
     cursor: pointer
+
 }
 
 .added-text,

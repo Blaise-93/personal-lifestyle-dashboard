@@ -1,51 +1,8 @@
-//import {api_key} from './secrets'
 const fetchInputEl = document.querySelector('.search-input')
 const contentInfoEl = document.querySelector(".image-content")
 const movieDashboardEl = document.querySelector('.movie-dashboard')
-document.querySelector(".search-btn").addEventListener("click", movieInput)
 
-//https://www.omdbapi.com/?i=tt3896198&apikey=e237076
-
-function movieInput() {
-    movieDashboardEl.innerHTML = ''
-    getMovie(fetchInputEl.value)
-}
-
-function getMovie(search) {
-    fetch(`https://www.omdbapi.com/?apikey=e237076&s=${search}`, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json'
-        }
-    })
-    .then(res => {
-        if(!res.ok){
-            throw Error("Something went wrong while fetching the movie of choice. Kindly check your network!")
-        }
-        return res.json()
-    })
-    .then(data => {
-        console.log(data)
-        return makeSearchCall(data)
-    })
-    .catch(err => alert(err))
-}
-
-async function makeSearchCall(data) {
-    try {
-      const imdbID = data.Search.map((e) => e.imdbID)
-      imdbID.forEach(async (id) => {
-        const res =
-          await fetch(`https://www.omdbapi.com/?apikey=e237076&s&i=${id}
-      `)
-        const movieData = await res.json()
-        renderMovie(movieData)
-      })
-    } catch (error) {
-      contentInfoEl.style.display = "flex"
-      contentInfoEl.innerHTML = `<h1> Unable to find what you're looking for.😔 Please search again... </h1>`
-    }
-  }
+getLocalStorageKeys()
 
 function renderMovie(movie) {
     const {
@@ -79,22 +36,31 @@ function renderMovie(movie) {
         </div>
     </div>
     ` 
+    document
+    .querySelectorAll(".star-icon")
+    .forEach((icon) => icon.addEventListener("click", removeMovie));
 }
 
-document.querySelectorAll(".add-icon")
-.forEach(icon => icon.addEventListener("click", filterMovie()))
+function removeMovie(event) {
+    document.querySelector('.removed-text')
+        .classList.add('visible')
+    setTimeout(() => {
+        document.querySelector('.removed-text').classList.remove('visible')
+    }, 2000)
 
-async function filterMovie(event) {
-const id = event.target.dataset.imdb
-const response = await fetch(`https://www.omdbapi.com/?apikey=e237076&s&i=${id}`)
-const data = await response.json()
-localStorage.setItem(id, JSON.stringify(data))
-document.querySelector('.added-text').classList.add('visible')
-setTimeout(() => {
-    document.querySelector('.added-text').classList.remove("visible")
-}, 1800)
+    const movieID = event.target.dataset.imdb
+    localStorage.removeItem(movieID)
+    if(localStorage.length === 0) {
+        contentInfoEl.style.display = 'flex'
+        movieDashboardEl.innerHTML = ''
+    } else getLocalStorageKeys()
 }
 
+function getLocalStorageKeys () {
+    movieDashboardEl.innerHTML = ''
 
-
-
+    for(let i = 0; i < localStorage.length; i++){
+        const key = localStorage(i)
+        renderMovie(JSON.parse(localStorage.getItem(key)))
+    }
+}
