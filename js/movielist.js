@@ -41,7 +41,8 @@ async function makeSearchCall(data) {
       })
     } catch (error) {
       contentInfoEl.style.display = "flex"
-      contentInfoEl.innerHTML = `<h1> Unable to find what you're looking for.😔 Please search again... </h1>`
+      contentInfoEl.innerHTML = `<h1 class="error-message"> Unable to find what you're looking for.😔
+             Perhaps, you didn't type the movie name correctly. \n Please search again... </h1>`
     }
   }
 
@@ -71,7 +72,7 @@ function renderMovie(movie) {
             <p>${Genre}</p>
             <div class="watchlist-container">
                 <img data-imdb=${imdbID} class='add-icon' src='icons/add-icon.png' />
-                <p class="watchlist">Watchlist</p>
+                <p class="watchlist">Add to Watchlist</p>
             </div>
             <div class="plot">${Plot}</div>
         </div>

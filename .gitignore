@@ -4,3 +4,4 @@ js/secret.js
 secrets.js
 app
 /node_modules
+js/utils.js
