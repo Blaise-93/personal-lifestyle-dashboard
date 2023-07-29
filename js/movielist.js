@@ -26,7 +26,10 @@ function getMovie(search) {
     .then(data => {
         return makeSearchCall(data);
     })
-    .catch(err => alert(err));
+    .catch( () => `
+        <h1> class="error-message">This Movie is not Available from \
+        our database </h1>
+    `);
 }
 
 async function makeSearchCall(data) {
@@ -56,8 +59,8 @@ function renderMovie(movie) {
         Plot,
         Genre,
         imdbRating,
-        imdbID} = movie;
-    //console.log(movie)
+        imdbID} = movie
+
     contentInfoEl.style.display = 'none';
     movieDashboardEl.innerHTML += `<div class="movie-inner">
         <div class="movie-poster">
@@ -66,7 +69,9 @@ function renderMovie(movie) {
         <div class="movie-info">
         <div class="movie-title">
           <h1 class="title">${Title}</h1>
-          <img class="star-icon" src='./icons/star-icon.png'>
+          <img class="star-icon" src='./icons/star-icon.png' 
+            alt=${Title}
+          >
           <div>${imdbRating}</div>
         </div>
         <div class='movie-desc'>
@@ -85,7 +90,6 @@ function renderMovie(movie) {
 
     async function filterMovie(event) {
     const id = event.target.dataset.imdb;
-    console.log(id)
     const response = await fetch(`https://www.omdbapi.com/?apikey=e237076&s&i=${id}`);
     const data = await response.json();
 

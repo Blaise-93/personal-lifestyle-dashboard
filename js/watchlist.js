@@ -1,10 +1,10 @@
 const contentInfoEl = document.querySelector(".image-content")
 const movieDashboardEl = document.querySelector('.movie-dashboard')
 
-
 getLocalStorageKeys()
 
 function renderMovie(movie) {
+    /* Destructure incoming objects from omdapi */
     const {
         Title,
         Poster, 
@@ -13,23 +13,27 @@ function renderMovie(movie) {
         Genre,
         imdbRating,
         imdbID} = movie
-    console.log(movie)
+
+
     contentInfoEl.style.display = 'none';
-    movieDashboardEl.innerHTML += `<div class="movie-inner">
+    movieDashboardEl.innerHTML += `
+    <div class="movie-inner">
         <div class="movie-poster">
-            <img class="poster-img" src=${Poster} alt=${Title} />
+            <img class="poster-img" src=${Poster} alt=${Title}/>
         </div>
         <div class="movie-info">
         <div class="movie-title">
           <h1 class="title">${Title}</h1>
-          <img class="star-icon" src='./icons/star-icon.png'>
+          <img class="star-icon" src='./icons/star-icon.png' alt=${Title}>
           <div>${imdbRating}</div>
         </div>
         <div class='movie-desc'>
-            <p>${Runtime}</p> 
-            <p>${Genre}</p>
+            <p class="runtime">${Runtime}</p> 
+            <p class="genre">${Genre}</p>
             <div class="watchlist-container">
-                <img data-imdb=${imdbID} class='add-icon' src='icons/remove-icon.png' />
+                <img src='icons/remove-icon.png' alt=${Title}
+                data-imdb=${imdbID} class='add-icon' aria-label=${Title}
+                />
                 <p class="watchlist">Remove</p>
             </div>
             <div class="plot">${Plot}</div>

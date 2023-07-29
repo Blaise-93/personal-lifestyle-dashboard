@@ -14,7 +14,7 @@ body {
     /* display: flex;
     justify-content: center; */
     margin: 0;
-    background:   #121212;;/*  #121212; */
+    background:   #121212;
     font-family: "inter", Arial, Helvetica, sans-serif;
     text-shadow: 0px 0px 20px #242424;
     line-height: 1.5;
@@ -189,7 +189,7 @@ input::placeholder {
 .image-content {
     align-items: center;
     gap:0.625em ;
-    color: #2e2e2f;
+    color: #48484a;
     min-height: 750px;
 }
 
@@ -287,7 +287,7 @@ input::placeholder {
   }
 
 .added-text,
-.remove-text {
+.removed-text {
     font-size: 0.8rem;
     font-weight: 700;
     border-style: solid;
@@ -296,6 +296,7 @@ input::placeholder {
     position: fixed;
     inset: 0;
     top: 1.25em;
+    width: -moz-fit-content;
     width: fit-content;
     height: min-content;
     opacity: 0;
@@ -309,4 +310,68 @@ input::placeholder {
     transition: opacity 1s linear;
   }
 
+/* Responsive Design */
 
+/* 1. mobile view of < 670px width*/
+
+@media (min-width: 300px) and (max-width:670px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+    .movie-container {
+        border: 2px solid red;
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        /* margin-left: .5em */
+
+    }
+    .header-container {
+        display: flex;
+        width: 350px;
+        font-size: .75em;
+    }
+    .header-title {
+        font-size: 2em; /* do sth to find film */
+    }    
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 22em;
+    }
+    .material-icons {
+        position: absolute;
+        left: 1%;
+      
+    }
+    .movie-inner {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .movie-desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.2em;
+        font-size: 1.325em;
+    }
+
+    .genre {
+        margin: -1.2em;
+    }
+    .add-icon {
+        width: 15%;
+        margin-top: 2px;
+    }
+    .plot {
+        margin-top: -1em;
+    }
+}
