@@ -107,6 +107,11 @@ p, h3 {
     overflow-wrap: break-word;
 }
 
+#root,
+#__next {
+  isolation: isolate;
+}
+
 .container {
     width: 62.5em;
     background: #0e0e0e
@@ -195,11 +200,13 @@ input::placeholder {
     text-decoration: none;
 }
 
+
+
 .watchlist-home {
     display: flex;
     align-items: center;
     justify-content: baseline;
-    gap: 10px
+    gap: 0.625em
 }
 
 /* Movie Container CSS */
@@ -270,6 +277,15 @@ input::placeholder {
 
 }
 
+.added-text {
+    color: #52f097;
+}
+
+
+.removed-text {
+    color: #f7625f;
+  }
+
 .added-text,
 .remove-text {
     font-size: 0.8rem;
@@ -287,13 +303,6 @@ input::placeholder {
     margin-inline: auto;
 }
 
-.added-text {
-    color: hsl(146, 90%, 67%);
-}
-
-.removed_text {
-    color: hsl(1, 90%, 67%);
-  }
   
   .visible {
     opacity: 1;

@@ -1,6 +1,6 @@
-const fetchInputEl = document.querySelector('.search-input')
 const contentInfoEl = document.querySelector(".image-content")
 const movieDashboardEl = document.querySelector('.movie-dashboard')
+
 
 getLocalStorageKeys()
 
@@ -14,7 +14,7 @@ function renderMovie(movie) {
         imdbRating,
         imdbID} = movie
     console.log(movie)
-    contentInfoEl.style.display = 'none'
+    contentInfoEl.style.display = 'none';
     movieDashboardEl.innerHTML += `<div class="movie-inner">
         <div class="movie-poster">
             <img class="poster-img" src=${Poster} alt=${Title} />
@@ -29,38 +29,43 @@ function renderMovie(movie) {
             <p>${Runtime}</p> 
             <p>${Genre}</p>
             <div class="watchlist-container">
-                <img data-imdb=${imdbID} class='add-icon' src='icons/add-icon.png' />
-                <p class="watchlist">Watchlist</p>
+                <img data-imdb=${imdbID} class='add-icon' src='icons/remove-icon.png' />
+                <p class="watchlist">Remove</p>
             </div>
             <div class="plot">${Plot}</div>
         </div>
     </div>
     ` 
     document
-    .querySelectorAll(".star-icon")
+    .querySelectorAll(".add-icon")
     .forEach((icon) => icon.addEventListener("click", removeMovie));
 }
 
 function removeMovie(event) {
     document.querySelector('.removed-text')
-        .classList.add('visible')
+    .classList.add('visible');
     setTimeout(() => {
-        document.querySelector('.removed-text').classList.remove('visible')
+        document.querySelector('.removed-text')
+        .classList.remove('visible');
     }, 2000)
 
     const movieID = event.target.dataset.imdb
-    localStorage.removeItem(movieID)
+    localStorage.removeItem(movieID);
     if(localStorage.length === 0) {
-        contentInfoEl.style.display = 'flex'
-        movieDashboardEl.innerHTML = ''
-    } else getLocalStorageKeys()
+        contentInfoEl.style.display = 'flex';
+        movieDashboardEl.innerHTML = '';
+    } else getLocalStorageKeys();
 }
 
-function getLocalStorageKeys () {
+function getLocalStorageKeys() {
+    /** 
+       *Callback function that retrieve individual local key of the movie from
+       * local storage.
+    **/
     movieDashboardEl.innerHTML = ''
 
     for(let i = 0; i < localStorage.length; i++){
-        const key = localStorage(i)
+        const key = localStorage.key(i)
         renderMovie(JSON.parse(localStorage.getItem(key)))
     }
 }
