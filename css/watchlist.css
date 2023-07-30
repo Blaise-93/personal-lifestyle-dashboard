@@ -320,7 +320,6 @@ input::placeholder {
         flex-direction: column;
     }
     .movie-container {
-        border: 2px solid red;
         display: flex;
         flex-direction: column;
         width: 400px;
@@ -343,6 +342,10 @@ input::placeholder {
         flex-direction: column;
         width: 22em;
     }
+    .subtitle {
+        padding-left: 6em;
+    }
+
     .material-icons {
         position: absolute;
         left: 1%;
@@ -364,9 +367,16 @@ input::placeholder {
         font-size: 1.325em;
     }
 
+    .title {
+        align-self: center;
+    }
     .genre {
         margin: -1.2em;
     }
+    .title{
+        padding-left: .5em;
+    }
+
     .add-icon {
         width: 15%;
         margin-top: 2px;
