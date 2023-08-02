@@ -94,15 +94,15 @@ const matchingArr =() => {
         newArrTexts.push( texts.text);
         let randomNum = Math.floor(Math.random() * newArrTexts.length);
         document.querySelector('.quotes')
-            .textContent =  `${newArrTexts[randomNum]}`;
+            .innerHTML =  `<p class="quote">${newArrTexts[randomNum]}</p>`;
     })
    }
-    function renderTextHtml() {
+    function renderQuoteHtml() {
       matchingArr();
     }
-    renderTextHtml();
+    renderQuoteHtml();
 
-    setInterval( renderTextHtml, 23200000);
+    setInterval( renderQuoteHtml, 23200000);
 
  
 })
