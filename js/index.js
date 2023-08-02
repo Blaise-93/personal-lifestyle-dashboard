@@ -68,6 +68,7 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?\
         return res.json();
     })
     .then(data => {
+        console.log(data)
   
        /*  const iconUrl = `http://openweathermap.org/img/${data.weather[0].icon}@2x.png`
           <img src=${iconUrl} alt="weather icon "/>

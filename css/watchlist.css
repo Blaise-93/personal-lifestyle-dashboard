@@ -329,6 +329,7 @@ input::placeholder {
         /* margin-left: .5em */
 
     }
+
     .header-container {
         display: flex;
         width: 350px;
@@ -342,6 +343,13 @@ input::placeholder {
         flex-direction: column;
         width: 22em;
     }
+
+    .searchbar {
+        margin: 0 1em;
+        font-size: 0.8em;
+        font-weight: bold
+    }
+
     .subtitle {
         padding-left: 6em;
     }
@@ -349,6 +357,7 @@ input::placeholder {
     .material-icons {
         position: absolute;
         left: 1%;
+        width: 20%;
       
     }
     .movie-inner {
@@ -364,7 +373,7 @@ input::placeholder {
         justify-content: center;
         align-items: center;
         padding: 1.2em;
-        font-size: 1.325em;
+        font-size: 1.25em;
     }
 
     .title {
@@ -375,13 +384,21 @@ input::placeholder {
     }
     .title{
         padding-left: .5em;
+        text-align: center;
+        margin-left: 1em
+
     }
 
     .add-icon {
-        width: 15%;
+        width: 13%;
         margin-top: 2px;
     }
     .plot {
         margin-top: -1em;
+        
+    }
+    .added-text,
+    .removed-text{
+        font-size: 0.625em;
     }
 }
