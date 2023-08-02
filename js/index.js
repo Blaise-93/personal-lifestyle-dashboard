@@ -1,53 +1,57 @@
 
 
-fetch("https://apis.scrimba.com/unsplash/photos/random?\
-orientation=landscape&query=nature")
-.then(res => res.json())
-.then(data => {
-    //console.log(data.urls)
-    document.body.style.backgroundImage = `url(${data.urls.regular})`;
-    document.getElementById("author").textContent = `By: ${data.user.name}`;
-})
-.catch(() => {
-    // Use a default background image/author
-    document.body.style.backgroundImage = `
-    url(https://images.unsplash.com/photo-1560008511-11c63416e52d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTEwMjl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI4NDIxMTc&ixlib=rb-1.2.1&q=80&w=1080
-)`;
-    document.getElementById("author").textContent = `By: Dodi Achmad`
-})
+const fetchUnsplashApi = () => (
+    fetch("https://apis.scrimba.com/unsplash/photos/random?\
+        orientation=landscape&query=nature")
+        .then(res => res.json())
+        .then(data => {
+            //console.log(data.urls)
+            document.body.style.backgroundImage = `url(${data.urls.regular})`;
+            document.getElementById("author").textContent = `By: ${data.user.name}`;
+        })
+        .catch(() => {
+            // Use a default background image/author
+            document.body.style.backgroundImage = `
+            url(https://images.unsplash.com/photo-1560008511-11c63416e52d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTEwMjl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI4NDIxMTc&ixlib=rb-1.2.1&q=80&w=1080
+        )`;
+            document.getElementById("author").textContent = `By: Dodi Achmad`
+        })
 
-//dont forget favicon
+)
+fetchUnsplashApi()
 
-
-fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
-.then(res => {
-    if (!res.ok) {
-        throw Error("Something went wrong")
-    }
-    return res.json()
-})
-.then(data => {
-    document.getElementById("crypto-top").innerHTML = `
-        <img src=${data.image.small} alt="bitcoin logo" />
-        <span>${data.name}</span>
-    `;
-    document.getElementById("crypto").innerHTML += `
-        <p>🎯:
-             $${data.market_data.current_price.usd}
-        </p>
-        <p>
-            <img id="green" src="icons/up-arrow.png" 
-                alt="good market behavior arrow"
-            >:
-             $${data.market_data.high_24h.usd}
-        </p>
-        <p><i id="red" class="fa-sharp fa-solid 
-            fa-arrow-down fa-beat-fade"></i>:
-            $${data.market_data.low_24h.usd}
-         </p>
-    `;
-})
-.catch(err => console.error(err));
+const fetchBitcoinApi = () => (
+    fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Something went wrong")
+            }
+            return res.json()
+        })
+        .then(data => {
+            document.getElementById("crypto-top").innerHTML = `
+                <img src=${data.image.small} alt="bitcoin logo" />
+                <span>${data.name}</span>
+            `;
+            document.getElementById("crypto").innerHTML += `
+                <p>🎯:
+                    $${data.market_data.current_price.usd}
+                </p>
+                <p>
+                    <img id="green" src="icons/up-arrow.png" 
+                        alt="good market behavior arrow"
+                    >:
+                    $${data.market_data.high_24h.usd}
+                </p>
+                <p><i id="red" class="fa-sharp fa-solid 
+                    fa-arrow-down fa-beat-fade"></i>:
+                    $${data.market_data.low_24h.usd}
+                </p>
+            `;
+        })
+        .catch(err => console.error(err))
+    )
+fetchBitcoinApi()
 
 const getCurrentTime = () => {
     const date = new Date();
@@ -89,7 +93,7 @@ fetch(`https://type.fit/api/quotes`)
 .then(data => {
 
 
-const matchingArr =() => {
+const matchingArr = () => {
         let newArrTexts = [];
         data.filter(texts => {
         newArrTexts.push( texts.text);

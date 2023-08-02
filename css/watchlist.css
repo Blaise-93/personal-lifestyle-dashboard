@@ -35,7 +35,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items:center;
-    color: whitesmoke;
+    color: rgb(222, 218, 218);
     min-height: 100%;
 }
 
@@ -172,7 +172,8 @@ input::placeholder {
 }
 
 .watchlist-content {
-    color: #787878
+    color: #787878;
+    text-align: center;
 }
 
 .error-message {
