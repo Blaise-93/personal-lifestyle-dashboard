@@ -4,12 +4,12 @@ const contentInfoEl = document.querySelector(".image-content");
 const movieDashboardEl = document.querySelector('.movie-dashboard');
 document.querySelector(".search-btn").addEventListener("click", movieInput);
 
-function movieInput() {
+export function movieInput() {
     movieDashboardEl.innerHTML = '';
     getMovie(fetchInputEl.value);
 }
 
-function getMovie(search) {
+export function getMovie(search) {
     fetch(`https://www.omdbapi.com/?apikey=e237076&s=${search}`, {
         method: 'GET',
         headers: {
@@ -32,7 +32,7 @@ function getMovie(search) {
     `);
 }
 
-async function makeSearchCall(data) {
+export async function makeSearchCall(data) {
     try {
       const imdbID = data.Search.map((e) => e.imdbID);
       imdbID.forEach(async (id) => {
@@ -51,7 +51,7 @@ async function makeSearchCall(data) {
     };
   };
 
-function renderMovie(movie) {
+export function renderMovie(movie) {
     const {
         Title,
         Poster, 
@@ -102,9 +102,3 @@ function renderMovie(movie) {
         }, 1900)
     } 
 };
-
-
-
-
-
-

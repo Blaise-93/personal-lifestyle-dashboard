@@ -1,6 +1,6 @@
 
 
-const fetchUnsplashApi = () => (
+export const fetchUnsplashApi = () => (
     fetch("https://apis.scrimba.com/unsplash/photos/random?\
         orientation=landscape&query=nature")
         .then(res => res.json())
@@ -20,7 +20,7 @@ const fetchUnsplashApi = () => (
 )
 fetchUnsplashApi()
 
-const fetchBitcoinApi = () => (
+export const fetchBitcoinApi = () => (
     fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
         .then(res => {
             if (!res.ok) {
@@ -53,7 +53,7 @@ const fetchBitcoinApi = () => (
     )
 fetchBitcoinApi()
 
-const getCurrentTime = () => {
+export const getCurrentTime = () => {
     const date = new Date();
     document.getElementById("time").textContent = date
         .toLocaleTimeString("en-us", {timeStyle: "short"});
@@ -61,54 +61,58 @@ const getCurrentTime = () => {
 
 setInterval(getCurrentTime, 1000);
 
-navigator.geolocation.getCurrentPosition(position => {
-fetch(`https://api.openweathermap.org/data/2.5/weather?\
-    lat=${position.coords.latitude}&lon=${position.coords.longitude}\
-    &units=metric&appid=${api_key}`)
-    .then(res => {
-        if (!res.ok) {
-            throw Error("Weather data not available");
+export const mapApiCall = () =>(
+    navigator.geolocation.getCurrentPosition(position => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?\
+            lat=${position.coords.latitude}&lon=${position.coords.longitude}\
+            &units=metric&appid=${api_key}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw Error("Weather data not available");
+                }
+                return res.json();
+            })
+            .then(data => {
+                console.log(data)
+          
+               /*  const iconUrl = `http://openweathermap.org/img/${data.weather[0].icon}@2x.png`
+                  <img src=${iconUrl} alt="weather icon "/>
+               */
+                document.getElementById("weather").innerHTML = `
+                    
+                    <p class="weather-temp">${Math.round(data.main.temp)}℃</p>
+                    <p class="weather-city">${data.name}</p>
+                    <p class="weather-info">${data.weather[0].description}</p> 
+                `;
+            })
+            .catch(err => console.error(err))
+        })
+)
+mapApiCall()
+
+export const quotesApi = () => (
+        
+    fetch(`https://type.fit/api/quotes`)
+        .then(response => response.json())
+        .then(data => {
+
+        const matchingArr = () => {
+                let newArrTexts = [];
+                data.filter(texts => {
+                newArrTexts.push( texts.text);
+                let randomNum = Math.floor(Math.random() * newArrTexts.length);
+                document.querySelector('.quotes')
+                    .innerHTML =  `<p class="quote">${newArrTexts[randomNum]}</p>`;
+            })
         }
-        return res.json();
+        function renderQuoteHtml() {
+            matchingArr();
+        }
+        renderQuoteHtml();
+        
+        setInterval( renderQuoteHtml, 23200000);
     })
-    .then(data => {
-        console.log(data)
-  
-       /*  const iconUrl = `http://openweathermap.org/img/${data.weather[0].icon}@2x.png`
-          <img src=${iconUrl} alt="weather icon "/>
-       */
-        document.getElementById("weather").innerHTML = `
-            
-            <p class="weather-temp">${Math.round(data.main.temp)}℃</p>
-            <p class="weather-city">${data.name}</p>
-            <p class="weather-info">${data.weather[0].description}</p> 
-        `;
-    })
-    .catch(err => console.error(err))
-});
-
-
-fetch(`https://type.fit/api/quotes`)
-.then(response => response.json())
-.then(data => {
-
-
-const matchingArr = () => {
-        let newArrTexts = [];
-        data.filter(texts => {
-        newArrTexts.push( texts.text);
-        let randomNum = Math.floor(Math.random() * newArrTexts.length);
-        document.querySelector('.quotes')
-            .innerHTML =  `<p class="quote">${newArrTexts[randomNum]}</p>`;
-    })
-   }
-    function renderQuoteHtml() {
-      matchingArr();
-    }
-    renderQuoteHtml();
-
-    setInterval( renderQuoteHtml, 23200000);
-
- 
-})
+    )
+    
+quotesApi()
 

@@ -41,7 +41,8 @@ body {
 
 .header-title {
     font-size: 2.95rem;
-    font-size: 700
+    padding-left: 0.25em;
+
 }
 
 .subtitle {
