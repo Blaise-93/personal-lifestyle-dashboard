@@ -2,6 +2,7 @@
 const fetchInputEl = document.querySelector('.search-input');
 const contentInfoEl = document.querySelector(".image-content");
 const movieDashboardEl = document.querySelector('.movie-dashboard');
+
 document.querySelector(".search-btn").addEventListener("click", movieInput);
 
 export function movieInput() {
@@ -15,6 +16,7 @@ export function getMovie(search) {
         headers: {
             Accept: 'application/json'
         }
+    
     })
     .then(res => {
         if(!res.ok){
@@ -24,7 +26,9 @@ export function getMovie(search) {
         return res.json();
     })
     .then(data => {
+        console.log(e.target)
         return makeSearchCall(data);
+
     })
     .catch( () => `
         <h1> class="error-message">This Movie is not Available from \
@@ -92,7 +96,8 @@ export function renderMovie(movie) {
     const id = event.target.dataset.imdb;
     const response = await fetch(`https://www.omdbapi.com/?apikey=e237076&s&i=${id}`);
     const data = await response.json();
-
+    
+    // store the movie in the browser
     localStorage.setItem(id, JSON.stringify(data));
     document.querySelector('.added-text')
         .classList.add('visible');

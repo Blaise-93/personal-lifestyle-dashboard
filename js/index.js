@@ -110,7 +110,7 @@ export const quotesApi = () => (
         }
         renderQuoteHtml();
         
-        setInterval( renderQuoteHtml, 23200000);
+        setInterval( renderQuoteHtml, 21600000);
     })
     )
     
