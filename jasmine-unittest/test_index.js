@@ -1,10 +1,10 @@
-/* Coulture TestCases -> Ist PAge */
+/* Coulture TestCases -> Ist Page */
 
 /* Fake test suite for fetching unsplash data from  */
 
 describe(`Spy fetchUnsplashApi as an API call`, ()  => {
     it('should call renderUnsplash data', () => {
-        let setUnsplash = null //before the API call by the user
+        let setUnsplash = null //before the API is called by the user
         // arrange
         let searchCallApi = {
             //data to be received from api call
