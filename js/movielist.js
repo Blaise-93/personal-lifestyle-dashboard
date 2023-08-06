@@ -66,7 +66,7 @@ export function renderMovie(movie) {
         imdbID} = movie
 
     contentInfoEl.style.display = 'none';
-    movieDashboardEl.innerHTML += `<div class="movie-inner">
+    movieDashboardEl.innerHTML += `<section class="movie-inner">
         <div class="movie-poster">
             <img class="poster-img" src=${Poster} alt=${Title} />
         </div>
@@ -87,7 +87,7 @@ export function renderMovie(movie) {
             </div>
             <div class="plot">${Plot}</div>
         </div>
-    </div>
+    </section>
     `;
     document.querySelectorAll(".add-icon")
      .forEach(icon => icon.addEventListener("click", filterMovie))
