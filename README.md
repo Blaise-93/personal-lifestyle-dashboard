@@ -147,9 +147,9 @@ _Example of some of it's code snippet for your perusal (grapped from movielist.c
     }
 ~~~
 
-*Visual Representation of Couture project on small screen devices:* <br>
+*Visual Representation of Coulture project on small screen devices:* <br>
 1. Home page <br>
- ![Page One](./md-images/devices/mobile.jpg  "coulture home page when viewed on Small Devices")
+ ![Page One](./md-images/devices/small-devices-coulture.png  "coulture home page when viewed on Small Devices")
 
 2. Movie List Page <br> <br>
     ![Movie List Page](./md-images/devices/watchlist-with-no.png "MovieList Page on Small Devices ")
