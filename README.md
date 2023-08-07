@@ -288,4 +288,4 @@ because I tried my best to simplify each test suites all the time using `describ
      - [Dr Uche Ejezube](https://www.facebook.com/profile.php?id=100008718735954&mibextid=2JQ9oc)
 
 
-___Thank you for Checking out my Project, I am grateful!__ ^ __ ^
+**_Thank you for Checking out my Project, I am grateful!_**
