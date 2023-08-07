@@ -1,4 +1,4 @@
-# Coulture
+# __Coulture__
 
 An incredible project which I created out of my desire to make clients want 
 to come back for more. This project was inspired by my dream for easiness of
@@ -13,7 +13,7 @@ search button, select and add the movie to their watchlists which will
 they want on [watchlist url](./md-images/devices/navigation-1.png).
 
 
-__Other Features__:
+## __Other Features__:
 - View bitcoin market value in real time when coulture homepage is on display. 
 - Change the color theme of bitcoin market capitalization when the user 
     hovers on it. Thus optimizing the visual effect of the user.
@@ -42,7 +42,7 @@ wants which displays all the available movies with that keystroke input by the
  user,and if the movie is not available, ofcourse the `catch block` error 
  method will display the error message of unavailability of the movie.
 
-### __Responsive Web Design Implementations:__
+## __Responsive Web Design Implementations:__
  As a fullstack developer, I am aware that working on this side project, 
  Coulture, I don't have a UX/UI designer which are heavily available in many 
  companies during project development. My work as a software 
@@ -86,8 +86,13 @@ __Eg of code snippet utilizing semantic html market is below__:
 ```
 
 #### On Large Devices: eg Laptops, Desktop
-On Large devices, I made sure I aggresively followed the 7 UI fundamentals to get the job done during my CSS workthrough and designs, and run routine check in all of them using my Edge and Chrome  Explorer at all time to view my CSS rulesets and see their behaviors where I want them to be applied. 
-Using [Web Content Accessibility Guidelines (WCAG)](./md-images/devices/WCAG.png) tool which to me is a great extension I love using to meet up the standard needed in content accessibility for web deelopment, I was able to detect and work on [several errors](./md-images/added-aria-label-issue-movielist-page3.png) which I saw, and work my way towards improving most of them since I care so much on design pattern and aesthetic beauty of my website. It was indeed a huge asset especially in color contrast ratio, Typography and alignments. For example, on [Coulture home page](./md-images/devices/page-1.png) it's WCAG is 100%, same with [Watchlist page](./md-images/automated-scan-of-movielist.png) while movielist page gave us 98% which to me is a great work done on accessibility/ UI design part.
+ On Large devices, I made sure I aggresively followed the 7 UI fundamentals
+ to get the job done during my CSS workthrough and designs, and run routine 
+ check in all of them using my Edge and Chrome  Explorer at all time to view my CSS
+  rulesets and see their behaviors where I want them to be applied. 
+Using [Web Content Accessibility Guidelines (WCAG)](./md-images/devices/WCAG.png) tool
+ which to me is a great extension I love using to meet up the standard needed in content
+  accessibility for web deelopment, I was able to detect and work on [several errors](./md-images/added-aria-label-issue-movielist-page3.png) which I saw, and work my way towards improving most of them since I care so much on design pattern and aesthetic beauty of my website. It was indeed a huge asset especially in color contrast ratio, Typography and alignments. For example, on [Coulture home page](./md-images/devices/page-1.png) it's WCAG is 100%, same with [Watchlist page](./md-images/automated-scan-of-movielist.png) while movielist page gave us 98% which to me is a great work done on accessibility/ UI design part.
 
 Worth noting that during the design stage, I worked my way through from large devices and narrow it down to small devices, thanks to CSS `flexbox layout, other box-models like padding, margin, float etc` which where extensively utilized throughout the coulture project.
 
@@ -158,19 +163,109 @@ _Example of some of it's code snippet for your perusal (grapped from movielist.c
 ![Watchlist page](./md-images/devices/movielist.png "Watchlist Page on Small Devices")
 
 
-### Unittesting: using Jasmine Framework:
+## Unittesting: using Jasmine Framework:
 
+Writing unittest can't be overemphasized because I see it as a stream that makes our codes keep being afloat and perform the desired work efficiently.
+Unit testing which seems boring to some developers has really come to be one of the key programming tools I love doing. I believe the idea of testing my work stems from my background as a pharmacist because whatever medication you discover/produce must pass some 
+scrutinized tests from Lab before human usage. This same concept makes me love behavior-driven-development because with it, you can save your company or your project a lot of money/time from unforseen circumstances prior to deployment of the organizational code in their code base. It looks boring/exhausting at first but indeed totally worth it, 
+it's not everything that `console.log()` can identify and help you figure it out but with
+unittesting you are 100% covered.
 
+In Coulture project, over 80% of the codes where tested using __Jasmine Framework__ and thanks to their great documentation which I had taken my time to study in the past. And yes, it was indeed helpful using their suites testcases to test my codes.
 
+Since majority of my javascripts functions fetch and consume data, `JSON` using `REST API`, I had to use jasmine spies to test the data asynchrously using fake-calls and assertion method like `toHavBeeenCalledWith` etc to test the 3 pages.
 
-Tech Stacks used:
+The functionalities of all the 3 javascripts codes which are [homepage test](./md-images/unittest/coulture-page1.png 'home page for index.js '),  [movielist test](./md-images/unittest/unit-testing-on-movielisthtml.png 'movielist page for movielist.js ') and [homepage test](./md-images/unittest/delete-item-unittesting-for%20watchlist.png 'movielist page for watchlist.js') were duly done and they all pass their respective tests.
+
+Some notable examples of tests done includes:
+ - all the API call tests
+ - render movie tests
+ - add movie test
+ - delete movie test from storage.
+
+_Code snippet of test done on render movie test using jasmine spy method is shown
+ below with a bit of comments to help my fellow devs understand what I am doing_:
+
+```javascript
+    /* Let's spy on selected movies that got displayed after 
+       the user keyed in
+       movie s/he wants to watch.
+     */
+describe('A spy on Movie being searched by the user', () => {
+        //arrange
+        let movies 
+        let name = null; //initialized to null prior to search
+    
+        beforeEach(() => {
+            movies = {
+                renderMovie: function(params){
+                    name = params;
+                }
+            };
+           // act
+            spyOn(movies, 'renderMovie'); //spy on the function
+            movies.renderMovie(
+                "Devil's Pass", '100 min', 5.7, 
+                'Horror Mystery Thriller', 'Produced in UK'
+            );
+            movies.renderMovie(
+                "Hall Pass", '105 min', 5.9,
+                'Comedy, Romance', 'Produced in Uk');
+
+            movies.renderMovie(
+                "Breakheart Pass", '95 min', 6.7,
+                'Horror Mystery Thriller', 'Produced in US');
+
+            movies.renderMovie(
+                "Psycho-Pass", '25 min', 
+                'Animation, Action, Crime', 'Produced in USA');
+            
+        });
+    
+       
+        it('track that movie spy was called', () => {
+            //assert
+            expect(movies.renderMovie).toHaveBeenCalled();
+        })
+    
+        it('track the spy was called 4 times', () => {
+            // assert
+            expect(movies.renderMovie).toHaveBeenCalledTimes(4);
+        })
+    
+        //assert
+        it('tracks all the args of its calls', () => {
+            expect(movies.renderMovie).toHaveBeenCalledWith(
+                "Breakheart Pass", '95 min', 6.7,
+                'Horror Mystery Thriller', 'Produced in US');
+        })
+    
+        //assert
+        it('stops all execution on a function', () => {
+            expect(name).toBeNull();
+        })
+    
+        // assert 
+        it('tracks if it was called at all', () => {
+            movies.renderMovie();
+            expect(movies.renderMovie.calls.any()).toEqual(true);
+        })
+    
+})
+
+```
+
+For more information about my unitestting, kindly visit the jasmine-unittest files 
+because I tried my best to simplify each test suites all the time using `describe/it blocks functions` of jasmine to do the work. 
+
+## __Tech Stacks used__:
 1. Javascript
 2. JSON
 3. HTML
 4. CSS
 5. Jasmine Unittest Framework
 
-__Project Acknowledgment__:
+## __Project Acknowledgment__:
 1. Influenced by [scrimba](scrimba.com) platform, thanks to their incredible tutors especially Bob Ziroll who gave us the platform to grow our learning in Software development
 2. API data via JSON were fetched from these resources:
     - Unsplash 
@@ -191,3 +286,6 @@ __Project Acknowledgment__:
      - [Pharm Ejike Pascal](https://www.linkedin.com/in/pascal-ejike-090885200) 
      - [Ejikeme Kester](https://twitter.com/Kester89Autos?t=gaAFAMzIcwBR5B2A5ToCUQ&s=35")
      - [Dr Uche Ejezube](https://www.facebook.com/profile.php?id=100008718735954&mibextid=2JQ9oc)
+
+
+___Thank you for Checking out my Project, I am grateful!__ ^ __ ^
