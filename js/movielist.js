@@ -26,7 +26,7 @@ export function getMovie(search) {
         return res.json();
     })
     .then(data => {
-        console.log(e.target)
+        console.log(data)
         return makeSearchCall(data);
 
     })
