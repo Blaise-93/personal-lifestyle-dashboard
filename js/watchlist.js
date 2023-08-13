@@ -66,7 +66,7 @@ function getLocalStorageKeys() {
        *Callback function that retrieve individual local key of the movie from
        * local storage.
     **/
-    movieDashboardEl.innerHTML = ''
+    movieDashboardEl.innerHTML = '';
 
     for(let i = 0; i < localStorage.length; i++){
         const key = localStorage.key(i)

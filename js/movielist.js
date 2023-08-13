@@ -10,50 +10,42 @@ export function movieInput() {
     getMovie(fetchInputEl.value);
 }
 
-export function getMovie(search) {
-    fetch(`https://www.omdbapi.com/?apikey=e237076&s=${search}`, {
-        method: 'GET',
-        headers: {
-            Accept: 'application/json'
-        }
-    
-    })
-    .then(res => {
-        if(!res.ok){
-            throw Error("Something went wrong while fetching \
-            the movie of choice. Kindly check your network!");
-        }
-        return res.json();
-    })
-    .then(data => {
+export const getMovie = async search => {
+    try {
+        const res = await axios.get
+        (`https://www.omdbapi.com/?apikey=e237076&s=${search}`,
+        )
+        const data = await res.data;
         console.log(data)
         return makeSearchCall(data);
-
-    })
-    .catch( () => `
-        <h1> class="error-message">This Movie is not Available from \
-        our database </h1>
-    `);
+    
+    } catch (error) {
+        `
+            <h1> class="error-message">This Movie is not Available from \
+            our database </h1>
+        `
+    }
 }
 
-export async function makeSearchCall(data) {
+export const makeSearchCall = async (data) => {
     try {
-      const imdbID = data.Search.map((e) => e.imdbID);
-      imdbID.forEach(async (id) => {
-        const res =
-          await fetch(`https://www.omdbapi.com/?apikey=e237076&s&i=${id}
-      `)
-        const movieData = await res.json();
-        renderMovie(movieData);
-      })
-    } catch (error) {
-      contentInfoEl.style.display = "flex";
-      contentInfoEl.innerHTML = `<h1 class="error-message"> \
-       Unable to find what you're looking for.😔
-             Perhaps, you didn't type the movie name correctly. 
-             \n Please search again... </h1>`;
-    };
-  };
+        const imdbID = await data.Search.map((e) => e.imdbID);
+
+        imdbID.forEach(async (id) => {
+            const res =
+              await axios.get(`https://www.omdbapi.com/?apikey=e237076&s&i=${id}
+          `)
+            const movieData = await res.data;
+            renderMovie(movieData);
+          })
+        } catch (error) {
+            contentInfoEl.style.display = "flex";
+            contentInfoEl.innerHTML = `<h1 class="error-message"> \
+             Unable to find what you're looking for.😔
+                   Perhaps, you didn't type the movie name correctly. 
+                   \n Please search again... </h1>`;
+          };
+}
 
 export function renderMovie(movie) {
     const {
@@ -92,10 +84,12 @@ export function renderMovie(movie) {
     document.querySelectorAll(".add-icon")
      .forEach(icon => icon.addEventListener("click", filterMovie))
 
-    async function filterMovie(event) {
+    const filterMovie = async event => {
     const id = event.target.dataset.imdb;
-    const response = await fetch(`https://www.omdbapi.com/?apikey=e237076&s&i=${id}`);
-    const data = await response.json();
+    const response = await axios.get(`
+            https://www.omdbapi.com/?apikey=e237076&s&i=${id}`);
+    const data = await response.data
+    console.log(data)
     
     // store the movie in the browser
     localStorage.setItem(id, JSON.stringify(data));
