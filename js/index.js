@@ -87,31 +87,29 @@ export const mapApiCall = async () => {
 mapApiCall()
 
 /** A function that fetch besutiful quotes from fitapi   */
-export const quotesApi = async () => (
-        
-    fetch(`https://type.fit/api/quotes`)
-        .then(response => response.json())
-        .then(data => {
-
-        const matchingArr = () => {
-                let newArrTexts = [];
-                data.filter(texts => {
-                newArrTexts.push( texts.text);
-                let randomNum = Math.floor(Math.random() * newArrTexts.length);
-                document.querySelector('.quotes')
-                    .innerHTML =  `<p class="quote">${newArrTexts[randomNum]}</p>`;
-            })
-        }
-        function renderQuoteHtml() {
-            matchingArr();
-        }
-        renderQuoteHtml();
-        
-        setInterval( renderQuoteHtml, 21600000);
-    })
-    )
-    
-quotesApi()
+const quotesAPI = async () => {
+    const url = 'https://type.fit/api/quotes'
+    const res = await axios.get(url)
+    const data = await res.data
+    const matchingArr = async () => {
+      let newArrTexts = [];
+      data.filter(texts => {
+       newArrTexts.push( texts.text);
+      let randomNum = Math.floor(Math.random() * newArrTexts.length);
+      document.querySelector('.quotes')
+          .innerHTML =  `<p class="quote">${newArrTexts[randomNum]}</p>`;
+  })
+  }
+  const renderQuoteHtml = () => {
+   matchingArr();
+  }
+  renderQuoteHtml();
+  
+  setInterval( renderQuoteHtml, 21600000);
+  
+  }
+  
+quotesAPI()
     
 
 

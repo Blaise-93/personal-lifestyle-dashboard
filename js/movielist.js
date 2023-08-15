@@ -17,7 +17,7 @@ export const getMovie = async search => {
         )
         const data = await res.data;
         console.log(data)
-        return makeSearchCall(data);
+        return await makeSearchCall(data);
     
     } catch (error) {
         `
@@ -84,12 +84,12 @@ export function renderMovie(movie) {
     document.querySelectorAll(".add-icon")
      .forEach(icon => icon.addEventListener("click", filterMovie))
 
-    const filterMovie = async event => {
+     
+ async function filterMovie (event)   {
     const id = event.target.dataset.imdb;
     const response = await axios.get(`
             https://www.omdbapi.com/?apikey=e237076&s&i=${id}`);
     const data = await response.data
-    console.log(data)
     
     // store the movie in the browser
     localStorage.setItem(id, JSON.stringify(data));

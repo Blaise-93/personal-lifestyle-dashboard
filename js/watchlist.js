@@ -1,9 +1,9 @@
-const contentInfoEl = document.querySelector(".image-content")
-const movieDashboardEl = document.querySelector('.movie-dashboard')
+const contentInfoEl = document.querySelector(".image-content");
+const movieDashboardEl = document.querySelector('.movie-dashboard');
 
-getLocalStorageKeys()
+getLocalStorageKeys();
 
-function renderMovie(movie) {
+function renderMovie (movie){
     /* Destructure incoming objects from omdapi */
     const {
         Title,
@@ -12,7 +12,7 @@ function renderMovie(movie) {
         Plot,
         Genre,
         imdbRating,
-        imdbID} = movie
+        imdbID} = movie;
 
 
     contentInfoEl.style.display = 'none';
@@ -61,15 +61,14 @@ function removeMovie(event) {
     } else getLocalStorageKeys();
 }
 
-function getLocalStorageKeys() {
     /** 
        *Callback function that retrieve individual local key of the movie from
        * local storage.
     **/
-    movieDashboardEl.innerHTML = '';
-
+function getLocalStorageKeys() {
+    movieDashboardEl.innerHTML = "";
     for(let i = 0; i < localStorage.length; i++){
-        const key = localStorage.key(i)
-        renderMovie(JSON.parse(localStorage.getItem(key)))
+        const key = localStorage.key(i);
+        renderMovie(JSON.parse(localStorage.getItem(key)));
     }
 }

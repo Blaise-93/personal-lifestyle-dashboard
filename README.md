@@ -258,6 +258,12 @@ describe('A spy on Movie being searched by the user', () => {
 For more information about my unitestting, kindly visit the jasmine-unittest files 
 because I tried my best to simplify each test suites all the time using `describe/it blocks functions` of jasmine to do the work. 
 
+## __Site Logo__:
+ On creating the site logo, I used [figma](https://www.figma.com/) to build  the [coulture logo](./md-images/coulture-logo.png). The logo comprises two Stars, a Sun and a River flow, water  which are three symbolic figures which every components of lives takes their livelihood from. Thus, Coulture is people's way of life and whomsever that uses it is indeed a star. 
+
+ The logo ico was generated using [Favicon](https://favicon.io/ 'favicon generator') so that it can help me suite any users device for users' search engine. I love using 
+ favicon because is quite easy to configure and navigate. 
+
 ## __Tech Stacks used__:
 1. Javascript
 2. JSON
@@ -272,12 +278,14 @@ because I tried my best to simplify each test suites all the time using `describ
     -  OMDAPI
     -  Coingecko
     - Fit
+    - favicon-ico
 3. Sponsored by Pharm Umeh Vivian
-4. Throughout the course of the [Coulture](https://splendid-cactus-b50379.netlify.app/movielist.html) project development, if I have any questions or stuck somewhere, I don't hesistate to ask questions on these wonderful channels:
+4. Throughout the course of the [Coulture](https://splendid-cactus-b50379.netlify.app/movielist.html) project development, if I have any questions or stuck somewhere, I don't hesitate to ask questions on these wonderful channels:
     - [MDN wesbite](https://developer.mozilla.org/ 'mozilla')
     - [Stackoverflow](https://stackoverflow.com 'stackoverflow website')
     - [scrimba discord channel](https://discord.com/channels/684009642984341525/919150760204329020)
     - [Jasmine](https://jasmine.github.io/tutorials/your_first_suite 'Jasmine tutorial site') where I had my deep dive into unittesting and importance of BDD months ago prior to this project.
+    - [Favicon](https://favicon.io/favicon-converter/)
 5. ### Contributors:
     Shout out to my senior software engineers, great friends and family for their mentorship, support and code review. Thanks to them: <br>
      - [Engr Eric Okemmadu](https://www.linkedin.com/in/engreric000 'Founder at Mentortribes, CTO at Vitas Inc')
